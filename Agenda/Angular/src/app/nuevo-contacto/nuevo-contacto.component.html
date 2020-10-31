@@ -1,0 +1,69 @@
+<mat-card style="background: white;">
+    <mat-card-title style="text-align: center;color: black;">NUEVO CONTACTO</mat-card-title>
+    <div class="form-inline">
+        <div class="form-inline">
+            <div class="col-6  form-inline" style="padding: 12px;display: inherit;">
+                <label  class="col-3">Nombre: </label>
+                <input class="form-control col-9" [disabled]="flag=='view'" style="color: black;"
+                    maxlength=30 
+                   [(ngModel)]="datosContacto.Nombre"  required>
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Apellido Paterno: </label>                
+                <input class="form-control col-9" [disabled]="flag=='view'"
+                    maxlength=30 style="color: black;"
+                   [(ngModel)]="datosContacto.ApellidoP"
+                    required>
+            </div>
+            <div class="col-6 form-inline" style="padding-top: 2px;">
+                <label class="col-3" >Apellido Materno: </label>
+                <input class="form-control col-9"[disabled]="flag=='view'"
+                    maxlength=30 style="color: black;"
+                   [(ngModel)]="datosContacto.ApellidoM" >
+                
+            </div>
+           
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Telefono: </label>
+                <input class="form-control col-9"   [disabled]="flag=='view'"
+                    maxlength=10 style="color: black;"
+                   [(ngModel)]="datosContacto.Telefono">                
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Email: </label>
+                <input class="form-control col-9" [disabled]="flag=='view'"
+                    maxlength=30 style="color: black;"
+                   [(ngModel)]="datosContacto.Email">                
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Alias: </label>
+                <input class="form-control col-9" placeholder="Alias"  
+                    maxlength=20 style="color: black;"[disabled]="flag=='view'"
+                   [(ngModel)]="datosContacto.Alias">
+                
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Dirección: </label>
+                <input class="form-control col-9" placeholder="Direccion"  
+                    maxlength=10 style="color: black;"[disabled]="flag=='view'"
+                   [(ngModel)]="datosContacto.Direccion">
+                
+            </div>
+
+
+        </div>
+        <div class="form-inline col-xl-4  offset-xl-8">
+            <div class="col-6">
+                <button type="button" style="width: 100%;" class="btn btn-danger" (click)="Cerrar()">
+                    Cancelar
+                </button></div>
+            <div class="col-6">
+                <button type="button"[disabled]="flag=='view'" style="width: 100%;" class="btn btn-success"(click)="Enviar()">
+                  Guardar
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</mat-card>
+

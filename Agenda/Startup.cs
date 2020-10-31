@@ -20,11 +20,12 @@ namespace Agenda
         }
 
         public IConfiguration Configuration { get; }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +35,9 @@ namespace Agenda
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(
+        options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()
+    );
             app.UseMvc();
         }
     }

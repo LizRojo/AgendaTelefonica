@@ -1,0 +1,7 @@
+input,label{
+    color: black;
+    width: 100%!important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    color:black;
+}
