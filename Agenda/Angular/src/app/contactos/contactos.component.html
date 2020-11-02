@@ -9,8 +9,9 @@
 </div>
     <button  type="button" class="btn btn-primary" (click)="Nuevo()" *ngIf="!cargando">Agregar Contacto</button>
     <div class="form-inline" style="padding-top: 12px;" *ngIf="!cargando">
-        <mat-card class="col-12" style="background-color: white;color: black;">
-            <h4>Contactos</h4>
+
+        <mat-card class="col-12" style="background-color: white;color: black;" >
+            <h4>Contactos</h4>            
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="Contactos" matSort style="width: 100%;background: white;">
               

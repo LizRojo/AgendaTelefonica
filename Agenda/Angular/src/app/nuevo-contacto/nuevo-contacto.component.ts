@@ -11,6 +11,8 @@ export class NuevoContactoComponent implements OnInit {
   datosContacto: ModNuevoContacto = { Nombre:"", ApellidoP: "", ApellidoM: "", Telefono: "", Email: "", Direccion: "", Alias: "" };
   flag: string = 'create';
   idContacto:number;
+  mensajeErr:boolean=false;
+  mensaje:string;
   constructor(private dialogRef: MatDialogRef<NuevoContactoComponent>, private _aS: ApiService,
     @Inject(MAT_DIALOG_DATA) data) {
       if (data.flag == 'edit'||data.flag == 'view') {
@@ -40,14 +42,28 @@ export class NuevoContactoComponent implements OnInit {
       this._aS.PostNuevoContacto(this.datosContacto).then(data=>{
         this.dialogRef.close();
 
+      },err=>{
+        this.mensajeErr=true;
+        this.mensaje="No se pudo agregar el nuevo contacto.";
+        setTimeout(()=>{
+          this.cerrar();
+        },3000)
       })
     }else{
       this._aS.UpdateContacto(this.idContacto,this.datosContacto).subscribe(data=>{
         this.dialogRef.close();
-
+      },err=>{
+        this.mensajeErr=true;
+        this.mensaje="No se editar el contacto.";
+        setTimeout(()=>{
+          this.cerrar();
+        },3000)
       })
 
     }
 
+    }
+    cerrar(){
+      this.mensajeErr=false;
     }
 }

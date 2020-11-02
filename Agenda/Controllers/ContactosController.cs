@@ -11,7 +11,7 @@ namespace Agenda.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ContactosController : ControllerBase
     {
         private Models.UsersContext db= new Models.UsersContext();
        
