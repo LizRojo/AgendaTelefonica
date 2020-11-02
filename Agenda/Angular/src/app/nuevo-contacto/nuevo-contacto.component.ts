@@ -38,15 +38,13 @@ export class NuevoContactoComponent implements OnInit {
     if (this.flag == 'create') {
       console.log("entra",this.datosContacto)
       this._aS.PostNuevoContacto(this.datosContacto).then(data=>{
-        if (data) {
-          this.dialogRef.close();
-        }
+        this.dialogRef.close();
+
       })
     }else{
       this._aS.UpdateContacto(this.idContacto,this.datosContacto).subscribe(data=>{
-        if (data) {
-          this.dialogRef.close();
-        }
+        this.dialogRef.close();
+
       })
 
     }

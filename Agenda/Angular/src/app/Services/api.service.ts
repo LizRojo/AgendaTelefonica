@@ -23,4 +23,7 @@ PostNuevoContacto(contacto: ModNuevoContacto) {
 UpdateContacto(id,form) {
   return this.http.put(this.nuevo+"/"+ id, JSON.stringify(form), this.httpOptions);
 }
+deleteContacto(id) {
+  return this.http.delete(this.nuevo+"/"+id );
+}
 }

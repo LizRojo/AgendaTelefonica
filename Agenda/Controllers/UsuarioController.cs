@@ -30,7 +30,8 @@ namespace Agenda.Controllers
 
         // POST: api/Usuario
         [HttpPost]
-        public void Post(Models.web.ModNuevoContacto contacto)
+        
+        public ActionResult Post(Models.web.ModNuevoContacto contacto)
         {
             Models.Contactos nuevoContacto = new Models.Contactos();
             nuevoContacto.Nombre = contacto.Nombre;
@@ -42,6 +43,7 @@ namespace Agenda.Controllers
             nuevoContacto.Alias = contacto.Alias;
             db.Contactos.Add(nuevoContacto);
             db.SaveChanges();
+            return Ok();
         }
 
         // PUT: api/Usuario/5
@@ -63,8 +65,12 @@ namespace Agenda.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            Models.Contactos dbcontacto = db.Contactos.Where(x => x.IdContacto == id).FirstOrDefault();
+            db.Contactos.Remove(dbcontacto);
+            db.SaveChanges();
+            return Ok();
         }
     }
 }

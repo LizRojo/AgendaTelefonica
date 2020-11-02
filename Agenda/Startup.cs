@@ -26,6 +26,13 @@ namespace Agenda
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddSwaggerGen(row =>
+            {
+                row.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
+                {
+                    Title="Api Prueba"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,9 +43,19 @@ namespace Agenda
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors(
-        options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()
-    );
+            options => {
+                options.WithOrigins("http://localhost:4200");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+                options.AllowAnyOrigin();
+            }
+        );
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "Angulr");
+            });
         }
     }
 }

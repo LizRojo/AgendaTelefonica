@@ -12,6 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {NuevoContactoComponent} from './nuevo-contacto/nuevo-contacto.component';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; 
+import {MatProgressSpinnerModule} from '@angular/material'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   entryComponents: [NuevoContactoComponent],
