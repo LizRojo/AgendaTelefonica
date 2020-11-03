@@ -24,7 +24,7 @@ namespace Agenda.Controllers
         [HttpPost]
         public Models.Usuario Post(Models.web.ModLogin login)
         {
-           Models.Usuario user= db.Usuario.Where(row => row.Usuario1 == login.user && row.Password == login.pass).FirstOrDefault();
+           Models.Usuario user= db.Usuario.Where(row => row.Usuario1.Equals( login.user) && row.Password.Equals( login.pass)).FirstOrDefault();
             if (user != null)
             {
                 return user;
@@ -34,17 +34,20 @@ namespace Agenda.Controllers
                 return null;
             }
         }
-
-        // PUT: api/Usuario/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("nuevoUsuario")]
+        public ActionResult nuevoUsuario(Models.Usuario user)
         {
+            Models.Usuario usuario = new Models.Usuario();
+            usuario.Nombre = user.Nombre;
+            usuario.ApellidoP = user.ApellidoP;
+            usuario.ApellidoM = user.ApellidoM;
+            usuario.Usuario1 = user.Usuario1;
+            usuario.Password = user.Password;
+            usuario.Telefono = user.Telefono;
+            db.Usuario.Add(usuario);
+            db.SaveChanges();
+            return Ok();
         }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

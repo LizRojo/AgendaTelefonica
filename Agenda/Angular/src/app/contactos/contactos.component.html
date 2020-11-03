@@ -1,5 +1,20 @@
-
-<mat-card style="height: 100%;"> 
+<app-usuario *ngIf="salir"></app-usuario>
+<mat-toolbar color="primary" *ngIf="!salir">
+  <mat-toolbar-row>
+    <span style="flex: 1 1 auto;"></span>
+    <div>
+      <p style="margin-bottom: 0;">{{idUsuario.nombre}} {{idUsuario.apellidoP}} {{idUsuario.apellidoM}}</p>
+      <p 
+      style="margin-bottom: 0;">{{idUsuario.telefono}}</p>
+    </div>
+    
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon  (click)="Salir()">clear</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  </mat-toolbar>
+<mat-card style="height: 100%;" *ngIf="!salir"> 
 <mat-card-title style="text-align: center;">AGENDA TELEFONICA</mat-card-title>
 <div class="text-center" style="padding-top: 15rem;"*ngIf="cargando">
   <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status" >

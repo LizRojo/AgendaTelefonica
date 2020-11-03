@@ -1,0 +1,67 @@
+<mat-card style="background: white;">
+    <mat-card-title style="text-align: center;color: black;">NUEVO USUARIO</mat-card-title>    
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="mensajeErr">
+        <strong>Error!</strong> {{mensaje}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="form-inline">
+        <div class="form-inline">
+            <div class="col-6  form-inline" style="padding: 12px;display: inherit;">
+                <label  class="col-3">Nombre: </label>
+                <input class="form-control col-9" style="color: black;"
+                    maxlength=15 
+                   [(ngModel)]="datosUsuario.nombre"  required>
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Apellido Paterno: </label>                
+                <input class="form-control col-9" 
+                    maxlength=30 style="color: black;"
+                   [(ngModel)]="datosUsuario.apellidoP"
+                    required>
+            </div>
+            <div class="col-6 form-inline" style="padding-top: 2px;">
+                <label class="col-3" >Apellido Materno: </label>
+                <input class="form-control col-9"
+                    maxlength=30 style="color: black;"
+                   [(ngModel)]="datosUsuario.apellidoM" >
+                
+            </div>
+           
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Telefono: </label>
+                <input class="form-control col-9" 
+                    maxlength=10 style="color: black;"
+                   [(ngModel)]="datosUsuario.telefono">                
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Usuario: </label>
+                <input class="form-control col-9" 
+                    maxlength=10 style="color: black;"
+                   [(ngModel)]="datosUsuario.usuario1">                
+            </div>
+            <div class="col-6 form-inline" style="padding: 12px;">
+                <label class="col-3" >Contraseña: </label>
+                <input class="form-control col-9" type="password"
+                    maxlength=10 style="color: black;"
+                   [(ngModel)]="datosUsuario.password">
+                
+            </div>
+
+
+        </div>
+        <div class="form-inline col-xl-4  offset-xl-8">
+            <div class="col-6">
+                <button type="button" style="width: 100%;" class="btn btn-danger" (click)="Cerrar()">
+                    Cancelar
+                </button></div>
+            <div class="col-6">
+                <button type="button"style="width: 100%;"class="btn btn-success"(click)="Enviar()">
+                  Guardar
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</mat-card>

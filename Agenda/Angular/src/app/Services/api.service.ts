@@ -36,4 +36,7 @@ idUser:Number;
 user(idUser){
 this.idUser=idUser;
 }
+NuevoUsuario(usuario: IUsuario ) {
+  return this.http.post<IUsuario>(this.usuario+"/nuevoUsuario", JSON.stringify(usuario), this.httpOptions);
+}
 }

@@ -16,12 +16,17 @@ import {MatProgressSpinnerModule} from '@angular/material';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
     NuevoContactoComponent,
     ContactosComponent,
     UsuarioComponent,
+    NuevoUsuarioComponent,
     
   ],
   imports: [
@@ -37,10 +42,13 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
-  entryComponents: [NuevoContactoComponent],
+  entryComponents: [NuevoContactoComponent,NuevoUsuarioComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
