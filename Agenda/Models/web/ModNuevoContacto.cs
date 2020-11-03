@@ -18,5 +18,6 @@ namespace Agenda.Models.web
         public string Direccion { get; set; }
         public string Email { get; set; }
         public string Alias { get; set; }
+        public int idUsuario { get; set; }
     }
 }

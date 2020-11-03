@@ -1,0 +1,26 @@
+<app-contactos *ngIf="usuario!=null" [idUsuario]="usuarioId"></app-contactos>
+<mat-card style="height: 100%;" *ngIf="usuario==null">
+<mat-card-title style="text-align: center;">LOGIN</mat-card-title>
+<div class="col-6 offset-2" style="padding-top: 3%;">
+    <div class="form-inline" style="padding: 12px">
+        <label  class="col-4">Usuario: </label>
+        <input class="form-control col-8" style="color: black;"
+        [(ngModel)]="datosUsuario.user"  maxlength=10  required>
+    </div>
+    <div class="form-inline" style="padding: 12px">
+        <label  class="col-4">Contraseña: </label>
+        <input class="form-control col-8" type="password" style="color: black;"
+        [(ngModel)]="datosUsuario.pass" maxlength=10  required>
+    </div>
+    <div class="col-12">
+        <div class="form-inline">
+            <button  type="button" style="width: 100%;" class="btn btn-success col-4 offset-5"(click)="login(datosUsuario)">
+                Ingresar
+            </button>
+            <p class="col-2" style="margin-bottom: 0px;">Registrar</p>
+        </div>
+        
+    </div>
+    
+</div>
+</mat-card>

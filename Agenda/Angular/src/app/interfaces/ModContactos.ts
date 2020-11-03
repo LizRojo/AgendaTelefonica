@@ -6,7 +6,8 @@ export interface ModContactos{
     Telefono:String,
     Direccion :String,
     Email :String,
-    Alias :String
+    Alias :String,
+    userId:Number
 }
 
 export interface ModNuevoContacto{
@@ -16,5 +17,6 @@ export interface ModNuevoContacto{
     Telefono:String,
     Direccion :String,
     Email :String,
-    Alias :String
+    Alias :String,
+    idUsuario:Number
 }

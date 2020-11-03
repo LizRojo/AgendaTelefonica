@@ -19,13 +19,14 @@ namespace Agenda.Controllers
         public List<Models.Contactos> Usuario()
         {
             return db.Contactos.OrderBy(row=>row.Nombre).ToList();
-            }
+        }
 
         // GET: api/Usuario/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public List<Models.Contactos> Get(int id)
         {
-            return "value";
+           List<int> contactos = db.ContactoUsuario.Where(row => row.IdUsuario == id).Select(row=>row.IdContacto).ToList();
+            return db.Contactos.Where(row=>contactos.Contains(row.IdContacto)).OrderBy(row => row.Nombre).ToList();
         }
 
         // POST: api/Usuario
@@ -41,7 +42,13 @@ namespace Agenda.Controllers
             nuevoContacto.Direccion = contacto.Direccion;
             nuevoContacto.Email = contacto.Email;
             nuevoContacto.Alias = contacto.Alias;
+            nuevoContacto.IdContacto = nuevoContacto.IdContacto;
             db.Contactos.Add(nuevoContacto);
+
+            Models.ContactoUsuario contactoUsuario = new Models.ContactoUsuario();
+            contactoUsuario.IdUsuario = contacto.idUsuario;
+            contactoUsuario.IdContacto = nuevoContacto.IdContacto;
+            db.ContactoUsuario.Add(contactoUsuario);
             db.SaveChanges();
             return Ok();
         }

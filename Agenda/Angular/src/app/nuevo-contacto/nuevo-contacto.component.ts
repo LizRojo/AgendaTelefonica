@@ -8,15 +8,16 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./nuevo-contacto.component.css']
 })
 export class NuevoContactoComponent implements OnInit {
-  datosContacto: ModNuevoContacto = { Nombre:"", ApellidoP: "", ApellidoM: "", Telefono: "", Email: "", Direccion: "", Alias: "" };
+  datosContacto: ModNuevoContacto = { Nombre:"", ApellidoP: "", ApellidoM: "", Telefono: "", Email: "", Direccion: "", Alias: "",idUsuario:0 };
   flag: string = 'create';
   idContacto:number;
   mensajeErr:boolean=false;
   mensaje:string;
   constructor(private dialogRef: MatDialogRef<NuevoContactoComponent>, private _aS: ApiService,
     @Inject(MAT_DIALOG_DATA) data) {
+      console.log("dta",data)
+      this.datosContacto.idUsuario=data.data.userId;
       if (data.flag == 'edit'||data.flag == 'view') {
-        console.log(data)
         this.datosContacto.Nombre=data.data.nombre;
         this.datosContacto.ApellidoP=data.data.apellidoP;
         this.datosContacto.ApellidoM=data.data.apellidoM;

@@ -1,7 +1,7 @@
 import {ApiService} from '../Services/api.service';
 import {ModContactos} from '../interfaces/ModContactos'
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -13,8 +13,9 @@ import {NuevoContactoComponent} from '../nuevo-contacto/nuevo-contacto.component
 })
 export class ContactosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @Input() idUsuario: Number;
   constructor(public _aS: ApiService,public dialog: MatDialog) { }
-  contactoDetalle: ModContactos;
+  contactoDetalle: ModContactos={Nombre:"",ApellidoP:"",ApellidoM:"",Telefono:"",Email:"",Direccion:"",userId:0,Alias:"",IdContacto:0};
   listaContactos: ModContactos[] = [];
   nuevoDialogRefSubscription: Subscription;
   openDialogSubscription: Subscription;
@@ -22,12 +23,13 @@ export class ContactosComponent implements OnInit {
   columnas: string[] = ['Nombre', 'apellidop', 'apellidom', 'telefono', 'editar', 'eliminar','ver'];
   Contactos = new MatTableDataSource(this.listaContactos);
   ngOnInit() {
+    this._aS.user(this.idUsuario);
     this.cargando=true;
-    this.cargarContactos();
+    this.cargarContactos(this.idUsuario);
   }
   
-  cargarContactos(){
-    this._aS.GetContactos().subscribe(data=>{
+  cargarContactos(idUsuario){
+    this._aS.GetContactos(idUsuario).subscribe(data=>{
       this.listaContactos=data;
       setTimeout(() => {
         this.listaContactos = JSON.parse(JSON.stringify(data));
@@ -44,16 +46,18 @@ export class ContactosComponent implements OnInit {
   
   }
   Nuevo() {
-    const dialogConfig = new MatDialogConfig();
+    this.contactoDetalle.userId=this.idUsuario;
+    this.OpenDialog(this.contactoDetalle, 'create');
+    /*const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { flag: "create" }
     const dialogRef = this.dialog.open(NuevoContactoComponent, dialogConfig);
     this.nuevoDialogRefSubscription = dialogRef.afterClosed().subscribe(result => {
       this.cargando=true;
-      this.cargarContactos();
+      this.cargarContactos(this.idUsuario);
       this.nuevoDialogRefSubscription.unsubscribe();
-    });
+    });*/
   }
   Editar(contacto: ModContactos) {
    this.contactoDetalle=contacto;
@@ -66,7 +70,7 @@ export class ContactosComponent implements OnInit {
    Eliminar(contacto){
      this.cargando=true;
     this._aS.deleteContacto(contacto.idContacto).subscribe(data=>{
-      this.cargarContactos();
+      this.cargarContactos(this.idUsuario);
     })
    }
   OpenDialog(data: ModContactos, flag: string): void {
@@ -80,7 +84,7 @@ export class ContactosComponent implements OnInit {
     const dialogRef = this.dialog.open(NuevoContactoComponent, dialogConfig);
     this.openDialogSubscription = dialogRef.afterClosed().subscribe(result => {
       this.cargando=true;
-      this.cargarContactos();      
+      this.cargarContactos(this.idUsuario);     
       this.openDialogSubscription.unsubscribe();
     });
   }

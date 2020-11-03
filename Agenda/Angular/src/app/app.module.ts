@@ -13,7 +13,9 @@ import {NuevoContactoComponent} from './nuevo-contacto/nuevo-contacto.component'
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; 
 import {MatProgressSpinnerModule} from '@angular/material';
-import { UsuarioComponent } from './usuario/usuario.component'
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { UsuarioComponent } from './usuario/usuario.component'
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   entryComponents: [NuevoContactoComponent],
