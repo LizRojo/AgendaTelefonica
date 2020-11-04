@@ -63,7 +63,7 @@ export class ContactosComponent implements OnInit {
    Eliminar(contacto){
      this.cargando=true;
     this._aS.deleteContacto(contacto.idContacto).subscribe(data=>{
-      this.cargarContactos(this.idUsuario);
+      this.cargarContactos(this.idUsuario.idUsuario);
     })
    }
   OpenDialog(data: ModContactos, flag: string): void {
@@ -77,7 +77,7 @@ export class ContactosComponent implements OnInit {
     const dialogRef = this.dialog.open(NuevoContactoComponent, dialogConfig);
     this.openDialogSubscription = dialogRef.afterClosed().subscribe(result => {
       this.cargando=true;
-      this.cargarContactos(this.idUsuario);     
+      this.cargarContactos(this.idUsuario.idUsuario);     
       this.openDialogSubscription.unsubscribe();
     });
   }

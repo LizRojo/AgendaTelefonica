@@ -32,17 +32,15 @@ export class NuevoContactoComponent implements OnInit {
 
   ngOnInit() {
   }
-  Cerrar() {
+  Cancelar() {
     this.dialogRef.close();
   }
   
   Enviar() {
    
     if (this.flag == 'create') {
-      console.log("entra",this.datosContacto)
       this._aS.PostNuevoContacto(this.datosContacto).then(data=>{
         this.dialogRef.close();
-
       },err=>{
         this.mensajeErr=true;
         this.mensaje="No se pudo agregar el nuevo contacto.";
