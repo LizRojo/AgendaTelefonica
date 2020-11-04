@@ -1,3 +1,6 @@
 label{
     color:black
 }
+::ng-deep .mat-dialog-container {
+    background: #41aea9;
+}

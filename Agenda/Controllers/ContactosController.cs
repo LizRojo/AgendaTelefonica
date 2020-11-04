@@ -74,6 +74,8 @@ namespace Agenda.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
+            Models.ContactoUsuario contactoUsuario = db.ContactoUsuario.Where(row => row.IdContacto == id).FirstOrDefault();
+            db.ContactoUsuario.Remove(contactoUsuario);
             Models.Contactos dbcontacto = db.Contactos.Where(x => x.IdContacto == id).FirstOrDefault();
             db.Contactos.Remove(dbcontacto);
             db.SaveChanges();

@@ -12,13 +12,8 @@ namespace Agenda.Controllers
     public class UsuarioController : ControllerBase
     {
         private Models.UsersContext db = new Models.UsersContext();
-        // GET: api/Usuario
-        [HttpGet]
-        public List<Models.Usuario> Usuario(string usuario, string contrasena)
-        {
-            return db.Usuario.ToList();
-        }
-
+        
+       
       
         // POST: api/Usuario
         [HttpPost]

@@ -44,4 +44,7 @@ export class UsuarioComponent implements OnInit {
       this.nuevoDialogRefSubscription.unsubscribe();
     });
   }
+  cerrar(){
+    this.mensajeErr=false;
+  }
 }

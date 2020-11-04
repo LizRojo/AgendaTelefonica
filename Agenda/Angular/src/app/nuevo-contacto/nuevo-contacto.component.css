@@ -5,3 +5,6 @@ input,label{
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
     color:black;
 }
+::ng-deep .mat-dialog-container {
+    background: #41aea9;
+}
